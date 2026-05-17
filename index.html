@@ -1,0 +1,840 @@
+<?php
+/*
+ * Template Name: TechVerse IoT Challenge
+ */
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TechVerse — IoT Innovation Challenge · Egypt National Qualifier</title>
+<meta name="description" content="TechVerse IoT Innovation Challenge — Egypt's national IoT qualifier. Student teams build real IoT solutions over 12 weeks. Top teams represent Egypt at the Afro-Asian Forum for Innovation and Technology."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:      #f0f8f4;
+  --bg2:     #e6f4ee;
+  --bg3:     #d8ece3;
+  --surf:    #ffffff;
+  --border:  #b8e8ce;
+  --border2: #8dd8b0;
+  --text:    #111a14;
+  --muted:   #50635a;
+  --teal:    #1db86e;
+  --teal2:   #22cc7a;
+  --lime:    #56f09c;
+  --deep:    #0f8a50;
+  --amber:   #f5a623;
+  --blue:    #3a7bd5;
+  --gray:    #b0bdb5;
+  --dark:    #071410;
+  --dark2:   #0c1e17;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.75;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+@media(max-width:600px){.container{padding:0 20px;}}
+
+/* UTILITIES */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:inline-flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--teal);}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--teal),var(--lime));color:#fff;font-size:15px;font-weight:700;padding:14px 32px;border-radius:10px;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 24px rgba(29,184,110,.28);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(29,184,110,.42);}
+.tag-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(29,184,110,.1);border:1px solid rgba(29,184,110,.22);border-radius:20px;padding:4px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(7,20,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(29,184,110,.15);transition:box-shadow .3s;}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:66px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--lime));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#fff;}
+.logo-text{font-size:17px;font-weight:700;color:#fff;letter-spacing:.04em;}
+.logo-text em{color:var(--teal);font-style:normal;}
+.logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);line-height:1;margin-top:1px;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.55);transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{background:linear-gradient(135deg,var(--teal),var(--lime));color:#fff;font-size:13px;font-weight:700;padding:9px 20px;border-radius:8px;transition:all .2s;white-space:nowrap;}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+@media(max-width:720px){.nav-links{display:none;}}
+@media(max-width:480px){.nav-inner{padding:0 20px;}}
+
+/* ─── HERO ─── */
+.hero{position:relative;width:100%;min-height:100svh;display:flex;align-items:center;overflow:hidden;}
+.hero-video-wrap{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#061410 0%,#071c14 50%,#04110d 100%);}
+/* IoT circuit grid overlay */
+.hero-video-wrap::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(29,184,110,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(29,184,110,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-video-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 70% 50%,rgba(29,184,110,.12) 0%,transparent 65%);
+}
+/* Animated circuit nodes */
+.hero-nodes{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.node{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal),0 0 24px var(--teal2);animation:nodePulse 4s ease-in-out infinite;}
+.node:nth-child(1){top:18%;left:62%;animation-delay:0s;}
+.node:nth-child(2){top:35%;left:75%;animation-delay:.8s;}
+.node:nth-child(3){top:55%;left:68%;animation-delay:1.6s;}
+.node:nth-child(4){top:72%;left:80%;animation-delay:2.4s;}
+.node:nth-child(5){top:28%;left:88%;animation-delay:3.2s;}
+@keyframes nodePulse{0%,100%{opacity:.3;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
+.hero-video-wrap video{width:100%;height:100%;object-fit:cover;opacity:.35;position:absolute;inset:0;}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(4,17,13,.9) 0%,rgba(4,17,13,.6) 50%,rgba(4,17,13,.15) 100%);}
+.hero-content{position:relative;z-index:3;max-width:1280px;margin:0 auto;padding:100px 48px 60px;width:100%;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;}
+@media(max-width:960px){.hero-content{grid-template-columns:1fr;gap:40px;}}
+@media(max-width:480px){.hero-content{padding:90px 20px 48px;}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(29,184,110,.14);border:1px solid rgba(29,184,110,.3);border-radius:20px;padding:5px 14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7fffb8;margin-bottom:20px;}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero-left h1{font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,4.5vw,5rem);font-weight:400;line-height:1.04;color:#fff;margin-bottom:18px;}
+.hero-left h1 i{font-style:italic;color:#7fffb8;}
+.hero-sub{font-size:16.5px;color:rgba(255,255,255,.65);margin-bottom:32px;line-height:1.6;max-width:540px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:36px;}
+.hero-actions .btn-primary{font-size:15px;padding:14px 30px;}
+.hero-actions .btn-ghost{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.7);font-size:14px;font-weight:500;border:1.5px solid rgba(255,255,255,.18);padding:13px 24px;border-radius:10px;transition:all .25s;}
+.hero-actions .btn-ghost:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35);color:#fff;}
+.hero-stats{display:flex;gap:0;flex-wrap:wrap;}
+.hstat{padding:10px 24px 10px 0;margin-right:24px;border-right:1px solid rgba(255,255,255,.1);}
+.hstat:last-child{border-right:none;margin-right:0;}
+.hstat .hs-val{font-family:'Instrument Serif',serif;font-size:28px;color:#fff;font-weight:400;line-height:1;}
+.hstat .hs-val span{color:#7fffb8;}
+.hstat .hs-label{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.38);margin-top:3px;}
+/* Hero right card */
+.hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(29,184,110,.25);border-radius:20px;padding:28px;backdrop-filter:blur(12px);}
+@media(max-width:960px){.hero-card{display:none;}}
+.hc-title{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.35);margin-bottom:20px;}
+.hc-timeline{display:flex;flex-direction:column;gap:0;}
+.hc-item{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.hc-item:last-child{border-bottom:none;}
+.hc-dot-col{display:flex;flex-direction:column;align-items:center;gap:0;padding-top:4px;}
+.hc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.hc-line{width:1px;height:100%;background:rgba(255,255,255,.1);flex:1;min-height:24px;}
+.hc-item:last-child .hc-line{display:none;}
+.hc-date{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.hc-event{font-size:13px;font-weight:600;color:#fff;line-height:1.3;}
+.hc-event small{display:block;font-size:11.5px;font-weight:400;color:rgba(255,255,255,.45);margin-top:2px;line-height:1.4;}
+
+/* ─── ABOUT ─── */
+.about-section{padding:100px 0;background:var(--surf);border-bottom:1px solid var(--border);}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+@media(max-width:800px){.about-inner{grid-template-columns:1fr;gap:48px;}}
+.about-left h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.2vw,2.9rem);font-weight:400;color:var(--text);line-height:1.18;margin-bottom:20px;}
+.about-left h2 i{font-style:italic;color:var(--teal);}
+.about-left p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:14px;}
+.about-left p strong{color:var(--text);}
+.about-left p:last-child{margin-bottom:0;}
+.about-right{display:flex;flex-direction:column;gap:14px;}
+.about-stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px 24px;display:flex;align-items:center;gap:18px;transition:border-color .25s,transform .25s;}
+.about-stat-card:hover{border-color:rgba(29,184,110,.35);transform:translateX(4px);}
+.asc-icon{font-size:26px;flex-shrink:0;}
+.asc-val{font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);}
+.asc-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);}
+.about-badge{margin-top:14px;background:linear-gradient(135deg,rgba(29,184,110,.1),rgba(86,240,156,.06));border:1px solid rgba(29,184,110,.2);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;}
+.ab-icon{font-size:24px;}
+.ab-text strong{font-size:14px;color:var(--text);}
+.ab-text span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+/* ─── TIMELINE ─── */
+.timeline-section{padding:100px 0;background:var(--dark);overflow:hidden;position:relative;}
+.timeline-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(29,184,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(29,184,110,.04) 1px,transparent 1px);background-size:56px 56px;}
+.timeline-section .eyebrow{color:var(--teal);}
+.timeline-section .eyebrow::before{background:var(--teal);}
+.timeline-section h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;}
+.timeline-section h2 i{font-style:italic;color:#7fffb8;}
+.tl-lead{font-size:15px;color:rgba(255,255,255,.5);max-width:520px;margin-bottom:60px;line-height:1.8;}
+/* Horizontal timeline */
+.tl-track{position:relative;padding-bottom:20px;}
+.tl-line{position:absolute;top:28px;left:0;right:0;height:3px;background:linear-gradient(90deg,rgba(170,186,180,.3),var(--teal) 40%,var(--lime) 70%,var(--deep) 100%);border-radius:3px;}
+.tl-points{display:grid;grid-template-columns:repeat(5,1fr);position:relative;}
+@media(max-width:760px){.tl-points{grid-template-columns:1fr 1fr;gap:24px 0;padding-top:12px;}.tl-line{display:none;}}
+@media(max-width:400px){.tl-points{grid-template-columns:1fr;}}
+.tl-point{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.tlp-dot-wrap{width:56px;height:56px;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;margin-bottom:16px;}
+.tlp-dot{width:18px;height:18px;border-radius:50%;border:3px solid var(--dark);}
+.tlp-icon{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.tl-point:nth-child(1) .tlp-dot{background:#8899aa;box-shadow:0 0 0 3px rgba(136,153,170,.3);}
+.tl-point:nth-child(2) .tlp-dot{background:#f5a623;box-shadow:0 0 0 3px rgba(245,166,35,.3);}
+.tl-point:nth-child(3) .tlp-dot{background:var(--teal);box-shadow:0 0 0 3px rgba(29,184,110,.3);}
+.tl-point:nth-child(4) .tlp-dot{background:var(--lime);box-shadow:0 0 0 3px rgba(86,240,156,.3);}
+.tl-point:nth-child(5) .tlp-dot{background:#7fffb8;box-shadow:0 0 0 3px rgba(127,255,184,.3),0 0 20px rgba(127,255,184,.2);}
+.tlp-date{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;}
+.tl-point:nth-child(1) .tlp-date{color:#8899aa;}
+.tl-point:nth-child(2) .tlp-date{color:#f5a623;}
+.tl-point:nth-child(3) .tlp-date{color:var(--teal);}
+.tl-point:nth-child(4) .tlp-date{color:var(--lime);}
+.tl-point:nth-child(5) .tlp-date{color:#7fffb8;}
+.tlp-label{font-size:12.5px;font-weight:700;color:#fff;line-height:1.3;padding:0 4px;}
+.tlp-sub{font-size:11px;color:rgba(255,255,255,.38);margin-top:4px;line-height:1.4;padding:0 4px;}
+
+/* ─── CATEGORIES ─── */
+.categories-section{padding:100px 0;background:var(--bg);}
+.categories-section h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:12px;}
+.categories-section h2 i{font-style:italic;color:var(--teal);}
+.cat-lead{font-size:15px;color:var(--muted);max-width:560px;margin-bottom:52px;line-height:1.8;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media(max-width:820px){.cat-grid{grid-template-columns:1fr;}}
+.cat-card{background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:32px 28px;transition:all .28s;position:relative;overflow:hidden;}
+.cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0;opacity:0;transition:opacity .28s;}
+.cat-card.c1::before{background:linear-gradient(90deg,#3a7bd5,#56f09c);}
+.cat-card.c2::before{background:linear-gradient(90deg,var(--teal),var(--lime));}
+.cat-card.c3::before{background:linear-gradient(90deg,var(--amber),var(--teal));}
+.cat-card:hover::before{opacity:1;}
+.cat-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(29,184,110,.12);border-color:rgba(29,184,110,.25);}
+.cat-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:18px;}
+.cat-icon{font-size:48px;margin-bottom:16px;}
+.cat-name{font-size:17px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:10px;}
+.cat-desc{font-size:13.5px;color:var(--muted);line-height:1.7;}
+.cat-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.cat-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:3px 9px;color:var(--muted);}
+
+/* ─── HOW IT WORKS ─── */
+.hiw-section{padding:100px 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.hiw-section h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:12px;}
+.hiw-section h2 i{font-style:italic;color:var(--teal);}
+.hiw-lead{font-size:15px;color:var(--muted);max-width:520px;margin-bottom:52px;line-height:1.8;}
+.hiw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media(max-width:820px){.hiw-grid{grid-template-columns:1fr;}}
+.hiw-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .28s;}
+.hiw-card:hover{border-color:rgba(29,184,110,.3);box-shadow:0 12px 32px rgba(29,184,110,.1);transform:translateY(-4px);}
+.hiw-num{width:50px;height:50px;border-radius:50%;background:var(--surf);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:22px;color:var(--text);margin-bottom:20px;transition:all .28s;}
+.hiw-card:hover .hiw-num{background:linear-gradient(135deg,var(--teal),var(--lime));border-color:transparent;color:#fff;}
+.hiw-dur{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);margin-bottom:10px;}
+.hiw-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.hiw-desc{font-size:13.5px;color:var(--muted);line-height:1.75;}
+.hiw-desc strong{color:var(--text);}
+.hiw-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.hiw-list li{font-size:13px;color:var(--muted);line-height:1.55;display:flex;align-items:flex-start;gap:8px;}
+.hiw-list li::before{content:'→';color:var(--teal);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.hiw-list li strong{color:var(--text);}
+
+/* ─── DIVISIONS + AWARDS ─── */
+.divisions-section{padding:100px 0;background:var(--bg);}
+.div-awards-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:52px;}
+@media(max-width:780px){.div-awards-wrap{grid-template-columns:1fr;}}
+.div-box, .awards-box{background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:32px;}
+.box-title{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.box-title::before{content:'';width:20px;height:1px;background:var(--teal);}
+.division-row{display:flex;gap:16px;margin-bottom:16px;}
+.division-row:last-of-type{margin-bottom:0;}
+.div-card{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-align:center;}
+.div-age{font-family:'Instrument Serif',serif;font-size:26px;color:var(--text);line-height:1;}
+.div-age span{color:var(--teal);}
+.div-label{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-top:4px;}
+.div-team{font-size:12px;color:var(--muted);margin-top:8px;}
+.div-team strong{color:var(--text);}
+.award-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+.award-item:last-child{border-bottom:none;padding-bottom:0;}
+.award-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.award-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.award-desc{font-size:12.5px;color:var(--muted);line-height:1.55;}
+
+/* ─── FORM ─── */
+.lead-form-section{padding:100px 0;background:var(--dark);position:relative;overflow:hidden;}
+.lead-form-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(29,184,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(29,184,110,.04) 1px,transparent 1px);background-size:48px 48px;}
+.lead-form-section::after{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(29,184,110,.07) 0%,transparent 65%);pointer-events:none;}
+.form-wrap{max-width:700px;margin:0 auto;position:relative;z-index:1;}
+.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(29,184,110,.2);border-radius:24px;padding:52px;backdrop-filter:blur(12px);box-shadow:0 20px 60px rgba(0,0,0,.4);}
+@media(max-width:600px){.form-card{padding:32px 24px;}}
+.form-header{text-align:center;margin-bottom:40px;}
+.fh-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(29,184,110,.12);border:1px solid rgba(29,184,110,.25);border-radius:20px;padding:5px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#7fffb8;margin-bottom:18px;}
+.form-header h2{font-family:'Instrument Serif',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:400;color:#fff;line-height:1.18;margin-bottom:12px;}
+.form-header h2 i{font-style:italic;color:#7fffb8;}
+.form-header p{font-size:14.5px;color:rgba(255,255,255,.5);line-height:1.7;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:540px){.form-grid{grid-template-columns:1fr;}}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-group label{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.03em;}
+.form-group label .req{color:var(--teal);}
+.form-group input,
+.form-group select{background:rgba(255,255,255,.06);border:1.5px solid rgba(29,184,110,.18);border-radius:9px;padding:12px 15px;font-family:'DM Sans',sans-serif;font-size:14.5px;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.form-group select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231db86e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+.form-group input::placeholder{color:rgba(255,255,255,.28);font-size:14px;}
+.form-group select option{background:#0d1e17;color:#fff;}
+.form-group input:focus,
+.form-group select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(29,184,110,.14);}
+.teams-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:480px){.teams-row{grid-template-columns:1fr;}}
+.team-input-block{background:rgba(29,184,110,.06);border:1.5px solid rgba(29,184,110,.18);border-radius:10px;padding:16px;}
+.team-div-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);margin-bottom:4px;}
+.team-age{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:10px;}
+.team-input-block input{background:rgba(255,255,255,.06);border:1.5px solid rgba(29,184,110,.15);border-radius:7px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:15px;color:#fff;outline:none;width:100%;transition:border-color .2s;}
+.team-input-block input:focus{border-color:var(--teal);}
+.form-submit-row{grid-column:1/-1;margin-top:8px;}
+.form-submit-row button{width:100%;background:linear-gradient(135deg,var(--teal),var(--lime));color:#fff;font-size:16px;font-weight:700;padding:16px 32px;border-radius:10px;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 24px rgba(29,184,110,.28);font-family:'DM Sans',sans-serif;letter-spacing:.01em;}
+.form-submit-row button:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(29,184,110,.42);}
+.form-submit-row button:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.form-note{grid-column:1/-1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;color:rgba(255,255,255,.25);}
+.form-note a{color:var(--teal);text-decoration:underline;}
+.form-success{display:none;text-align:center;padding:32px 0;}
+.form-success .fs-icon{font-size:52px;margin-bottom:18px;}
+.form-success h3{font-family:'Instrument Serif',serif;font-size:28px;color:#fff;margin-bottom:10px;}
+.form-success p{font-size:14.5px;color:rgba(255,255,255,.5);line-height:1.7;}
+
+/* ─── FOOTER ─── */
+footer{background:#04100c;border-top:1px solid rgba(29,184,110,.1);padding:64px 0 36px;text-align:center;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(29,184,110,.06) 0%,transparent 65%);pointer-events:none;}
+.footer-logo-area{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
+.footer-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--lime));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#fff;margin:0 auto 8px;}
+.fb-name{font-size:20px;font-weight:700;color:#fff;letter-spacing:.04em;}
+.fb-name em{color:var(--teal);font-style:normal;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.3);line-height:1.7;max-width:380px;margin:0 auto;}
+.footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 28px;margin:24px 0 20px;}
+.footer-nav a{font-size:13.5px;color:rgba(255,255,255,.38);transition:color .2s;}
+.footer-nav a:hover{color:var(--teal);}
+.footer-sep{color:rgba(255,255,255,.12);font-size:11px;align-self:center;}
+.footer-divider{height:1px;background:rgba(255,255,255,.06);margin:0 0 20px;}
+.fb-copy{font-size:12.5px;color:rgba(255,255,255,.22);}
+.fb-copy span{color:var(--teal);}
+.footer-powered{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.1);}
+.footer-powered span{color:rgba(29,184,110,.3);}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">TV</div>
+      <div>
+        <div class="logo-text">TECH<em>VERSE</em></div>
+        <div class="logo-sub">by Nextera Education</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#phases">How It Works</a>
+      <a href="#register">Register</a>
+    </div>
+    <a href="#register" class="nav-cta">Register Your School →</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-video-wrap">
+    <!-- SWAP: replace event.mp4 with your video file once uploaded -->
+    <video autoplay muted loop playsinline>
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-nodes">
+    <div class="node"></div><div class="node"></div><div class="node"></div>
+    <div class="node"></div><div class="node"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag"><div class="dot"></div>Egypt National Qualifier · Now Open</div>
+      <h1>IoT Innovation<br><i>Challenge 2026.</i></h1>
+      <p class="hero-sub">Egypt's national Internet of Things competition for school students. Build real IoT prototypes, solve national challenges, and qualify for the Afro-Asian Forum for Innovation and Technology.</p>
+      <div class="hero-actions">
+        <a href="#register" class="btn-primary">Register Your School →</a>
+        <a href="https://drive.google.com/drive/folders/1huK3Jx9SLnoe2YGS7JoyuW1zrlx0JwDV?usp=drive_link" target="_blank" class="btn-ghost">📄 Challenge Brief</a>
+      </div>
+      <div class="hero-stats">
+        <!-- <div class="hstat"><div class="hs-val">12<span>wk</span></div><div class="hs-label">Program duration</div></div> -->
+        <div class="hstat"><div class="hs-val">3</div><div class="hs-label">Challenge domains</div></div>
+        <div class="hstat"><div class="hs-val">2</div><div class="hs-label">Age divisions</div></div>
+        <div class="hstat"><div class="hs-val">🌍</div><div class="hs-label">International stage</div></div>
+      </div>
+    </div>
+    <!-- Mini timeline card (visible on desktop) -->
+    <div class="hero-card">
+      <div class="hc-title">Key Dates</div>
+      <div class="hc-timeline">
+        <div class="hc-item">
+          <div class="hc-dot-col">
+            <div class="hc-dot" style="background:#8899aa;"></div>
+            <div class="hc-line"></div>
+          </div>
+          <div>
+            <div class="hc-date" style="color:#8899aa;">May 1, 2026</div>
+            <div class="hc-event">Registration Opens<small>Sign-up portal accessible</small></div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-dot-col">
+            <div class="hc-dot" style="background:#f5a623;"></div>
+            <div class="hc-line"></div>
+          </div>
+          <div>
+            <div class="hc-date" style="color:#f5a623;">June 15, 2026</div>
+            <div class="hc-event">Registration Deadline<small>Secure your team's spot</small></div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-dot-col">
+            <div class="hc-dot" style="background:var(--teal);"></div>
+            <div class="hc-line"></div>
+          </div>
+          <div>
+            <div class="hc-date" style="color:var(--teal);">May 15 – Jul 15</div>
+            <div class="hc-event">Mentorship Period<small>Guidance &amp; prototype dev</small></div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-dot-col">
+            <div class="hc-dot" style="background:var(--lime);"></div>
+            <div class="hc-line"></div>
+          </div>
+          <div>
+            <div class="hc-date" style="color:var(--lime);">Aug - Sep</div>
+            <div class="hc-event">National Competition<small>Live judging &amp; finals</small></div>
+          </div>
+        </div>
+        <div class="hc-item">
+          <div class="hc-dot-col">
+            <div class="hc-dot" style="background:#7fffb8;box-shadow:0 0 10px #7fffb8;"></div>
+            <div class="hc-line" style="opacity:0;"></div>
+          </div>
+          <div>
+            <div class="hc-date" style="color:#7fffb8;">Oct 24–28, 2026</div>
+            <div class="hc-event">International Stage 🌍<small>Afro-Asian Forum · Represent Egypt</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-left fade-up">
+        <div class="tag-pill" style="margin-bottom:18px;">Egypt National Qualifier</div>
+        <h2>Where students build<br>real <i>IoT solutions.</i></h2>
+        <p>The <strong>IoT Innovation Challenge</strong> is a 12-week national competition where student teams collaboratively develop Internet of Things solutions addressing real-world problems. Participants create innovative, functional IoT prototypes integrating hardware, embedded systems, wireless communication, and cloud platforms.</p>
+        <p>This national qualifier serves as <strong>Egypt's gateway to the Afro-Asian Forum for Innovation and Technology</strong>, where top teams represent the country on an international stage — gaining access to industry professionals, internship opportunities, and global recognition.</p>
+        <p>Organised by <strong>TechVerse · Nextera Education</strong>, and part of the Smart Egypt National Youth Innovation Program.</p>
+        <div class="about-badge" style="margin-top:20px;">
+          <div class="ab-icon">🎯</div>
+          <div class="ab-text">
+            <strong>Compete to achieve the UN Sustainable Development Goals</strong>
+            <span>Your IoT solution should address a real societal, environmental, or economic challenge.</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-right fade-up" style="transition-delay:.12s">
+        <!-- <div class="about-stat-card">
+          <div class="asc-icon">⏱️</div>
+          <div><div class="asc-val">12 Weeks</div><div class="asc-label">Total challenge duration</div></div>
+        </div> -->
+        <div class="about-stat-card">
+          <div class="asc-icon">👥</div>
+          <div><div class="asc-val">5 Students / Team</div><div class="asc-label">Junior &amp; Senior divisions</div></div>
+        </div>
+        <div class="about-stat-card">
+          <div class="asc-icon">🏆</div>
+          <div><div class="asc-val">Grand Prize</div><div class="asc-label">Direct qualification · Afro-Asian Forum</div></div>
+        </div>
+        <div class="about-stat-card">
+          <div class="asc-icon">🌐</div>
+          <div><div class="asc-val">International Stage</div><div class="asc-label">October 24–28, 2026</div></div>
+        </div>
+        <div class="about-stat-card">
+          <div class="asc-icon">🤝</div>
+          <div><div class="asc-val">Industry Mentors</div><div class="asc-label">Dedicated guidance each phase</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TIMELINE ═════════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="container">
+    <div class="eyebrow fade-up">Key Dates</div>
+    <h2 class="fade-up">From registration<br>to <i>the world stage.</i></h2>
+    <p class="tl-lead fade-up">Five milestones. Twelve weeks. One national competition — and beyond.</p>
+    <div class="tl-track fade-up">
+      <div class="tl-line"></div>
+      <div class="tl-points">
+        <div class="tl-point">
+          <div class="tlp-dot-wrap"><div class="tlp-dot"></div></div>
+          <div class="tlp-date">May 1, 2026</div>
+          <div class="tlp-label">Registration Opens</div>
+          <div class="tlp-sub">Portal now accessible</div>
+        </div>
+        <div class="tl-point">
+          <div class="tlp-dot-wrap"><div class="tlp-dot"></div></div>
+          <div class="tlp-date">May 15 – Jul 15</div>
+          <div class="tlp-label">Mentorship Period</div>
+          <div class="tlp-sub">Industry guidance &amp; prototyping</div>
+        </div>
+        <div class="tl-point">
+          <div class="tlp-dot-wrap"><div class="tlp-dot"></div></div>
+          <div class="tlp-date">Jun 15, 2026</div>
+          <div class="tlp-label">Registration Deadline</div>
+          <div class="tlp-sub">Last chance to secure your spot</div>
+        </div>
+        <div class="tl-point">
+          <div class="tlp-dot-wrap"><div class="tlp-dot"></div></div>
+          <div class="tlp-date">Aug - Sep</div>
+          <div class="tlp-label">National Competition</div>
+          <div class="tlp-sub">Showcase &amp; live judging</div>
+        </div>
+        <div class="tl-point">
+          <div class="tlp-dot-wrap"><div class="tlp-dot"></div></div>
+          <div class="tlp-date">Oct 24–28, 2026</div>
+          <div class="tlp-label">International Stage 🌍</div>
+          <div class="tlp-sub">Afro-Asian Forum · Represent Egypt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CHALLENGE CATEGORIES ══════════════════════ -->
+<section class="categories-section" id="categories">
+  <div class="container">
+    <div class="eyebrow fade-up">Challenge Domains</div>
+    <h2 class="fade-up">Solve real problems<br>in <i>three priority areas.</i></h2>
+    <p class="cat-lead fade-up">Every team picks one domain and builds an IoT solution that creates measurable impact. Judged on innovation, technical build, and societal value.</p>
+    <div class="cat-grid">
+      <div class="cat-card c1 fade-up">
+        <div class="cat-num">Domain 01</div>
+        <div class="cat-icon">🌱</div>
+        <div class="cat-name">Smart Agriculture &amp; Water Management</div>
+        <div class="cat-desc">IoT solutions for irrigation automation, soil monitoring, crop yield optimization, and tackling water scarcity challenges.</div>
+        <div class="cat-tags">
+          <span class="cat-tag">Irrigation</span>
+          <span class="cat-tag">Soil Sensors</span>
+          <span class="cat-tag">Water Scarcity</span>
+          <span class="cat-tag">Crop Yield</span>
+        </div>
+      </div>
+      <div class="cat-card c2 fade-up" style="transition-delay:.1s">
+        <div class="cat-num">Domain 02</div>
+        <div class="cat-icon">⚡</div>
+        <div class="cat-name">Smart Energy &amp; Environment</div>
+        <div class="cat-desc">Connected systems for energy optimization, renewable monitoring, air and water quality sensing, and climate-responsive innovation.</div>
+        <div class="cat-tags">
+          <span class="cat-tag">Renewable Energy</span>
+          <span class="cat-tag">Air Quality</span>
+          <span class="cat-tag">Climate</span>
+          <span class="cat-tag">Efficiency</span>
+        </div>
+      </div>
+      <div class="cat-card c3 fade-up" style="transition-delay:.2s">
+        <div class="cat-num">Domain 03</div>
+        <div class="cat-icon">🏙️</div>
+        <div class="cat-name">Smart Systems</div>
+        <div class="cat-desc">Broad-scope solutions for smart infrastructure, urban mobility, building automation, and systemic IoT applications at scale.</div>
+        <div class="cat-tags">
+          <span class="cat-tag">Smart Cities</span>
+          <span class="cat-tag">Mobility</span>
+          <span class="cat-tag">Automation</span>
+          <span class="cat-tag">Infrastructure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ HOW IT WORKS ═════════════════════════════ -->
+<section class="hiw-section" id="phases">
+  <div class="container">
+    <div class="eyebrow fade-up">Three Phases</div>
+    <h2 class="fade-up">Twelve weeks.<br><i>Real results.</i></h2>
+    <p class="hiw-lead fade-up">A structured, mentor-supported journey from ideation to live national finals — with IoT development kits provided.</p>
+    <div class="hiw-grid">
+      <div class="hiw-card fade-up">
+        <div class="hiw-num">1</div>
+        <div class="hiw-dur">Phase 1 · Weeks 1–3</div>
+        <div class="hiw-title">Team Selection &amp; Solution Design</div>
+        <div class="hiw-desc">Teams are onboarded and complete an <strong>Ideation Bootcamp</strong>, locking in their IoT solution concept across one of the three national challenge domains.</div>
+        <ul class="hiw-list">
+          <li><strong>Ideation Bootcamp</strong> to frame your challenge</li>
+          <li>Select domain: Agriculture, Energy, or Smart Systems</li>
+          <li>Define your IoT solution concept</li>
+        </ul>
+      </div>
+      <div class="hiw-card fade-up" style="transition-delay:.1s">
+        <div class="hiw-num">2</div>
+        <div class="hiw-dur">Phase 2 · Weeks 4–10</div>
+        <div class="hiw-title">Prototype Fabrication &amp; Development</div>
+        <div class="hiw-desc">Teams receive <strong>IoT development kits</strong> and build working prototypes with cloud integration and dedicated mentor check-ins throughout.</div>
+        <ul class="hiw-list">
+          <li>IoT dev kits provided to every team</li>
+          <li><strong>Mentor check-ins</strong> on a scheduled basis</li>
+          <li>Cloud integration validated end-to-end</li>
+        </ul>
+      </div>
+      <div class="hiw-card fade-up" style="transition-delay:.2s">
+        <div class="hiw-num">3</div>
+        <div class="hiw-dur">Phase 3 · Weeks 11–12</div>
+        <div class="hiw-title">Judging &amp; National Championship</div>
+        <div class="hiw-desc">Final prototypes are independently judged. Top finalists present <strong>live at the National Finals</strong>. Awards announced in a formal ceremony.</div>
+        <ul class="hiw-list">
+          <li>Independent panel of expert judges</li>
+          <li>Live presentation at <strong>National Finals event</strong></li>
+          <li>Formal awards ceremony</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DIVISIONS + AWARDS ═══════════════════════════ -->
+<section class="divisions-section" id="divisions">
+  <div class="container">
+    <div class="eyebrow fade-up">Who Competes</div>
+    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:12px;" class="fade-up">Two divisions.<br><i>One national stage.</i></h2>
+    <p style="font-size:15px;color:var(--muted);max-width:520px;margin-bottom:0;line-height:1.8;" class="fade-up">Every team that completes the full 12-week program earns recognition. Top finalists go further.</p>
+    <div class="div-awards-wrap">
+      <div class="div-box fade-up">
+        <div class="box-title">Age Divisions</div>
+        <div class="division-row">
+          <div class="div-card">
+            <div class="div-age">10–<span>14</span></div>
+            <div class="div-label">Junior Division</div>
+            <div class="div-team"><strong>5 students</strong> per team</div>
+          </div>
+          <div class="div-card">
+            <div class="div-age">15–<span>18</span></div>
+            <div class="div-label">Senior Division</div>
+            <div class="div-team"><strong>5 students</strong> per team</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:18px;line-height:1.7;">Each division competes separately on the same challenge domains. Judging criteria are age-appropriate but maintain the same rigor. Both divisions qualify for the international stage.</p>
+      </div>
+      <div class="awards-box fade-up" style="transition-delay:.12s">
+        <div class="box-title">Awards</div>
+        <div class="award-item">
+          <div class="award-icon">🏆</div>
+          <div>
+            <div class="award-name">Grand Prize</div>
+            <div class="award-desc">Direct qualification to the <strong>Afro-Asian Forum for Innovation and Technology</strong>. Awarded to top-ranked teams per division.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">💡</div>
+          <div>
+            <div class="award-name">Best Innovation Award</div>
+            <div class="award-desc">Recognizing the most creative application of IoT technology.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">⚙️</div>
+          <div>
+            <div class="award-name">Best Technical Build Award</div>
+            <div class="award-desc">Recognizing outstanding engineering execution and prototype quality.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">🌍</div>
+          <div>
+            <div class="award-name">Top Impact Award</div>
+            <div class="award-desc">Recognizing the solution with the greatest societal or environmental value.</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div class="award-icon">📜</div>
+          <div>
+            <div class="award-name">Participation Certificate</div>
+            <div class="award-desc">Issued to every student who completes the full 12-week program.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FORM ══════════════════════════════════ -->
+<section class="lead-form-section" id="register">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-card">
+        <div class="form-header">
+          <div class="fh-tag">🚀 School Registration</div>
+          <h2>Register your school<br><i>for the challenge.</i></h2>
+          <p>Submit your organization's details and your team numbers below. Our team will reach out within 24 hours to confirm your registration and walk you through next steps.</p>
+        </div>
+        <div id="form-fields">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="org-name">Organization Name <span class="req">*</span></label>
+              <input type="text" id="org-name" placeholder="e.g. Cairo STEM School" required/>
+            </div>
+            <div class="form-group full">
+              <label for="org-type">Organization Type <span class="req">*</span></label>
+              <select id="org-type" required>
+                <option value="" disabled selected>Select organization type…</option>
+                <option value="School">School</option>
+                <option value="Academy / Training Center">Academy / Training Center</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="city">City / Location <span class="req">*</span></label>
+              <input type="text" id="city" placeholder="e.g. Cairo, Giza…" required/>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="req">*</span></label>
+              <input type="tel" id="phone" placeholder="+20 1XX XXX XXXX" required/>
+            </div>
+            <div class="form-group full">
+              <label for="gmail">Gmail Address <span class="req">*</span></label>
+              <input type="email" id="gmail" placeholder="contact@gmail.com" required/>
+            </div>
+            <div class="teams-row">
+              <div class="team-input-block">
+                <div class="team-div-label">Junior Division</div>
+                <div class="team-age">Ages 10–14 · 5 students/team</div>
+                <input type="number" id="teams-junior" min="0" placeholder="0" />
+              </div>
+              <div class="team-input-block">
+                <div class="team-div-label">Senior Division</div>
+                <div class="team-age">Ages 15–18 · 5 students/team</div>
+                <input type="number" id="teams-senior" min="0" placeholder="0" />
+              </div>
+            </div>
+            <div class="form-submit-row">
+              <button type="button" id="submit-btn" onclick="submitForm()">Register Now →</button>
+            </div>
+            <div class="form-note">
+              No commitment required &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1r4tAnYG6FDVu0SinRxUpgijMJZX3IiGT/view?usp=drive_link" target="_blank">Read the IoT Challenge Brief →</a>
+            </div>
+          </div>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="fs-icon">🎉</div>
+          <h3>Registration received!</h3>
+          <p>Thank you! Our TechVerse team will contact you within 24 hours to confirm your school's registration and share the next steps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo-area">
+      <div class="footer-mark">TV</div>
+      <div class="fb-name">TECH<em>VERSE</em></div>
+      <p class="footer-tagline">Egypt's flagship youth technology education program — from the classroom to the national stage to the world.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#about">About</a><span class="footer-sep">·</span>
+      <a href="#timeline">Timeline</a><span class="footer-sep">·</span>
+      <a href="#categories">Domains</a><span class="footer-sep">·</span>
+      <a href="#phases">How It Works</a><span class="footer-sep">·</span>
+      <a href="#register">Register</a><span class="footer-sep">·</span>
+      <a href="https://drive.google.com/file/d/1r4tAnYG6FDVu0SinRxUpgijMJZX3IiGT/view?usp=drive_link" target="_blank">Challenge Brief</a>
+    </nav>
+    <div class="footer-divider"></div>
+    <p class="fb-copy">© 2025–2026 <span>TechVerse</span> · Developed by <span>Nextera Education</span>.</p>
+    <div class="footer-powered">Part of the <span>Smart Egypt National Youth Innovation Program</span></div>
+  </div>
+</footer>
+
+<script>
+/*
+ * ─── GOOGLE SHEETS SUBMISSION ────────────────────────────────────────────────
+ *
+ * HOW TO SET UP:
+ * 1. Open your Google Sheet:
+ *    https://docs.google.com/spreadsheets/d/1GA9Ii-9y3jEnIiEpN6D4rZ-kq95LR5h-DCX0RRBMIGg/edit
+ * 2. Go to Extensions → Apps Script
+ * 3. Paste this script and deploy as a Web App (Execute as: Me, Access: Anyone):
+ *
+ *    function doPost(e) {
+ *      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+ *      var data = JSON.parse(e.postData.contents);
+ *      sheet.appendRow([
+ *        data.timestamp, data.orgName, data.orgType,
+ *        data.city, data.gmail, data.phone,
+ *        data.teamsJunior, data.teamsSenior
+ *      ]);
+ *      return ContentService.createTextOutput('OK');
+ *    }
+ *
+ * 4. Copy the deployed Web App URL and paste it below ↓
+ */
+const GOOGLE_SHEET_URL = 'https://script.google.com/a/macros/nextera.education/s/AKfycbzImp838OS24xR9CKkNsfQF2tTX7hAhlvcS-x0OANEwYDGA3Pjzjxc3BBRtH8Ba3guo2Q/exec';
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function submitForm() {
+  const orgName     = document.getElementById('org-name').value.trim();
+  const orgType     = document.getElementById('org-type').value;
+  const city        = document.getElementById('city').value.trim();
+  const gmail       = document.getElementById('gmail').value.trim();
+  const phone       = document.getElementById('phone').value.trim();
+  const teamsJunior = document.getElementById('teams-junior').value || '0';
+  const teamsSenior = document.getElementById('teams-senior').value || '0';
+
+  if (!orgName || !orgType || !city || !gmail || !phone) {
+    alert('Please fill in all required fields (marked with *).');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        timestamp:    new Date().toLocaleString('en-EG', { timeZone: 'Africa/Cairo' }),
+        orgName,
+        orgType,
+        city,
+        gmail,
+        phone,
+        teamsJunior,
+        teamsSenior
+      })
+    });
+  } catch(err) {
+    console.error('Submission error:', err);
+  }
+
+  document.getElementById('form-fields').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+/* ── Scroll animations ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ── Navbar shadow on scroll ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.25)' : 'none';
+});
+
+/* ── Smooth anchor scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
