@@ -52,7 +52,27 @@ img{max-width:100%;display:block;}
 .navbar{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(7,20,16,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(29,184,110,.15);transition:box-shadow .3s;}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:66px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-logo-mark{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--teal),var(--lime));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#fff;}
+
+/* ── UPDATED: navbar logo mark ── */
+.nav-logo-mark{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:rgba(29,184,110,.1);
+  border:1.5px solid rgba(29,184,110,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px;
+  flex-shrink:0;
+}
+.nav-logo-mark img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 0 6px rgba(29,184,110,.5));
+}
+
 .logo-text{font-size:17px;font-weight:700;color:#fff;letter-spacing:.04em;}
 .logo-text em{color:var(--teal);font-style:normal;}
 .logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);line-height:1;margin-top:1px;}
@@ -285,7 +305,28 @@ img{max-width:100%;display:block;}
 footer{background:#04100c;border-top:1px solid rgba(29,184,110,.1);padding:64px 0 36px;text-align:center;position:relative;overflow:hidden;}
 footer::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(29,184,110,.06) 0%,transparent 65%);pointer-events:none;}
 .footer-logo-area{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:24px;}
-.footer-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--lime));display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:#fff;margin:0 auto 8px;}
+
+/* ── UPDATED: footer logo mark ── */
+.footer-mark{
+  width:64px;
+  height:64px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1.5px solid rgba(29,184,110,.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 8px;
+  padding:8px;
+}
+.footer-mark img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:drop-shadow(0 0 10px rgba(29,184,110,.55));
+  opacity:.95;
+}
+
 .fb-name{font-size:20px;font-weight:700;color:#fff;letter-spacing:.04em;}
 .fb-name em{color:var(--teal);font-style:normal;}
 .footer-tagline{font-size:13px;color:rgba(255,255,255,.3);line-height:1.7;max-width:380px;margin:0 auto;}
@@ -310,8 +351,10 @@ footer::before{content:'';position:absolute;top:-100px;left:50%;transform:transl
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <div class="nav-logo">
+      <div class="nav-logo-mark">
+        <img src="TRANSPARENT_2-removebg-preview.png" alt="TechVerse logo"/>
+      </div>
       <div>
-        <div class="nav-logo-mark"><img src ="TRANSPARENT_2-removebg-preview.png"/></div>
         <div class="logo-sub">by Nextera Education</div>
       </div>
     </div>
@@ -728,7 +771,9 @@ footer::before{content:'';position:absolute;top:-100px;left:50%;transform:transl
 <footer>
   <div class="container">
     <div class="footer-logo-area">
-      <div class="footer-mark"><img src="TRANSPARENT_2-removebg-preview.png"/></div>
+      <div class="footer-mark">
+        <img src="TRANSPARENT_2-removebg-preview.png" alt="TechVerse logo"/>
+      </div>
       <div class="fb-name">TECH<em>VERSE</em></div>
       <p class="footer-tagline">Egypt's flagship youth technology education program — from the classroom to the national stage to the world.</p>
     </div>
